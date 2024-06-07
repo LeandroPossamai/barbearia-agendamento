@@ -1,6 +1,6 @@
-// src/components/BookingForm.js (adicionar validação e tratamento de erros)
 import React, { useState } from 'react';
 import axios from 'axios';
+import './BookingForm.css'; // Importando o arquivo CSS
 
 const BookingForm = () => {
     const [name, setName] = useState('');
@@ -32,27 +32,30 @@ const BookingForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <p style={{ color: 'green' }}>{success}</p>}
-            <div>
-                <label>Nome:</label>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-            </div>
-            <div>
-                <label>Email:</label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            </div>
-            <div>
-                <label>Data:</label>
-                <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
-            </div>
-            <div>
-                <label>Hora:</label>
-                <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required />
-            </div>
-            <button type="submit">Agendar</button>
-        </form>
+        <div className="booking-form-container">
+            <form className="booking-form" onSubmit={handleSubmit}>
+                <h2>Agendar Serviço</h2>
+                {error && <p className="error-message">{error}</p>}
+                {success && <p className="success-message">{success}</p>}
+                <div className="form-group">
+                    <label>Nome:</label>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+                </div>
+                <div className="form-group">
+                    <label>Email:</label>
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                </div>
+                <div className="form-group">
+                    <label>Data:</label>
+                    <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
+                </div>
+                <div className="form-group">
+                    <label>Hora:</label>
+                    <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required />
+                </div>
+                <button type="submit">Agendar</button>
+            </form>
+        </div>
     );
 };
 
