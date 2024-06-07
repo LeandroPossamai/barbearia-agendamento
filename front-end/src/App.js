@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Bookings from './pages/Bookings';
-import BookingForm from './components/BookingForm'; // Importar o formulário de agendamento
 import Login from './pages/Login';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const handleLogin = (credentials) => {
-        // Simulação de login bem-sucedido
         console.log('Logging in with', credentials);
         setIsAuthenticated(true);
     };
@@ -25,15 +23,14 @@ const App = () => {
                         <Link to="/bookings">Agendamentos</Link>
                     </li>
                     <li>
-                        <Link to="/booking-form">Agendar Serviço</Link>
+                        <Link to="/login">Login</Link>
                     </li>
                 </ul>
             </nav>
             <Routes>
-                <Route path="/login" element={isAuthenticated ? <Navigate to="/" /> : <Login onLogin={handleLogin} />} />
-                <Route path="/" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
-                <Route path="/bookings" element={isAuthenticated ? <Bookings /> : <Navigate to="/login" />} />
-                <Route path="/booking-form" element={isAuthenticated ? <BookingForm /> : <Navigate to="/login" />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/bookings" element={<Bookings />} />
+                <Route path="/login" element={<Login onLogin={handleLogin} />} />
             </Routes>
         </Router>
     );

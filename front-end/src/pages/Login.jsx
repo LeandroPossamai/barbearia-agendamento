@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './Login.css';
 
 const Login = ({ onLogin }) => {
@@ -7,22 +6,22 @@ const Login = ({ onLogin }) => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:5000/login', { email, password });
-            if (response.status === 200) {
-                onLogin({ email, password });
-            }
-        } catch (err) {
-            setError('Credenciais inválidas');
+        if (!email || !password) {
+            setError('Todos os campos são obrigatórios');
+            return;
         }
+
+        // Suponha que handleLogin seja a função para autenticar
+        onLogin({ email, password });
     };
 
     return (
         <div className="login-container">
-            <form onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleSubmit}>
                 <h2>Login</h2>
+                {error && <p className="error-message">{error}</p>}
                 <div className="form-group">
                     <label>Email:</label>
                     <input
@@ -41,7 +40,6 @@ const Login = ({ onLogin }) => {
                         required
                     />
                 </div>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
                 <button type="submit">Entrar</button>
             </form>
         </div>

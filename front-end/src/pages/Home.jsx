@@ -1,12 +1,15 @@
-// src/pages/Home.js
 import React from 'react';
-import BookingForm from '../components/BookingForm';
+import './Home.css';
 
-const Home = () => (
-    <div>
-        <h1>Bem-vindo à Barbearia</h1>
-        <BookingForm />
-    </div>
-);
+const Home = () => {
+    return (
+        <div className="home-container">
+            <div className="home-content">
+                <h1>Bem-vindo à Barbearia</h1>
+                <p>Agende seu horário conosco!</p>
+            </div>
+        </div>
+    );
+};
 
 export default Home;
