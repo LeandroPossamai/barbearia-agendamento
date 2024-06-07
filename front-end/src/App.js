@@ -1,39 +1,22 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import Bookings from './pages/Bookings';
 import Login from './pages/Login';
+import Schedule from './pages/Schedule';
+import { BookingProvider } from './contexts/BookingContext';
+import Navbar from './components/Navbar';  // Import the Navbar component
 
-const App = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-    const handleLogin = (credentials) => {
-        console.log('Logging in with', credentials);
-        setIsAuthenticated(true);
-    };
-
-    return (
+const App = () => (
+    <BookingProvider>
         <Router>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/bookings">Agendamentos</Link>
-                    </li>
-                    <li>
-                        <Link to="/login">Login</Link>
-                    </li>
-                </ul>
-            </nav>
+            <Navbar />  {/* Add the Navbar component */}
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/bookings" element={<Bookings />} />
-                <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/schedule" element={<Schedule />} />
             </Routes>
         </Router>
-    );
-};
+    </BookingProvider>
+);
 
 export default App;
