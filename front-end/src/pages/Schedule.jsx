@@ -7,7 +7,7 @@ const Schedule = () => {
 
     return (
         <div className="schedule-container">
-            <h2>Agenda de Agendamentos</h2>
+            <h2>Agenda de Horários</h2>
             <div className="schedule">
                 {bookings.map((booking, index) => (
                     <div key={index} className="schedule-item">

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import './Login.css';
+import { FaEnvelope, FaLock } from 'react-icons/fa';
 
 const Login = () => {
-    // eslint-disable-next-line
     const [email, setEmail] = useState('');
-    // eslint-disable-next-line
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
@@ -14,31 +13,31 @@ const Login = () => {
     };
 
     return (
-        <div className="login-container">
+        <div className="login-container" style={{backgroundImage: 'url(/public/images/barbearia.jpg)'}}>
             <form className="login-form" onSubmit={handleSubmit}>
                 <h2>Login</h2>
                 {error && <p className="error-message">{error}</p>}
                 <div className="form-group">
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="login-button-container">
-                    <button type="submit" className="login-button">Login</button>
-                </div>
+    <FaEnvelope className="input-icon" />
+    <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+    />
+</div>
+<div className="form-group">
+    <FaLock className="input-icon" />
+    <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+    />
+</div>
+
             </form>
         </div>
     );
